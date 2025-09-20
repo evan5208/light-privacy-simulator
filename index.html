@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Light & Privacy Simulator | LuxDrape</title>
+  <meta name="description" content="Interactive simulator for custom curtains. Test sheer, semi-sheer, blackout, and velvet fabrics to compare light and privacy levels." />
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #f6f8fb; color: #222; }
+    header { background: #fff; border-bottom: 1px solid #ddd; padding: 20px; }
+    header h1 { margin: 0; font-size: 24px; }
+    header p { margin: 5px 0 0; font-size: 14px; color: #555; }
+    .wrap { max-width: 1000px; margin: 0 auto; padding: 20px; }
+    .card { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin-bottom: 20px; }
+    label { display: block; margin-top: 12px; font-size: 14px; color: #333; }
+    select { width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; }
+    .stage { height: 300px; display: flex; align-items: center; justify-content: center; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; margin-top: 15px; }
+    .window { width: 80%; height: 90%; background: url('https://picsum.photos/800/500?blur=2') center/cover no-repeat; position: relative; }
+    .overlay { position: absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.0); transition: background 0.3s; }
+    .btn { display: inline-block; margin-top: 15px; padding: 10px 16px; border-radius: 6px; background: #0b73f5; color: #fff; text-decoration: none; }
+    footer { text-align: center; font-size: 13px; color: #777; margin-top: 40px; padding-bottom: 20px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>Light & Privacy Simulator</h1>
+      <p>
+        Test how different fabrics affect light and privacy before ordering your 
+        <a href="https://luxdrape.com/" target="_blank" rel="noopener">Custom Curtains</a>.
+      </p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="card">
+      <h2>1) Select fabric type</h2>
+      <label for="fabric">Fabric</label>
+      <select id="fabric">
+        <option value="0.0">Sheer (very light)</option>
+        <option value="0.3">Semi-Sheer</option>
+        <option value="0.6">Blackout</option>
+        <option value="0.8">Velvet</option>
+      </select>
+    </div>
+
+    <div class="card">
+      <h2>2) Simulation</h2>
+      <div class="stage">
+        <div class="window">
+          <div class="overlay" id="overlay"></div>
+        </div>
+      </div>
+      <p style="margin-top:10px;font-size:14px;color:#555">
+        Adjust fabric type to simulate how much daylight passes through your 
+        <a href="https://luxdrape.com/" target="_blank" rel="noopener">Custom Curtains</a>.
+      </p>
+      <a class="btn" href="https://luxdrape.com/" target="_blank" rel="noopener">Order at LuxDrape ↗</a>
+    </div>
+
+    <div class="card">
+      <h2>3) Helpful links</h2>
+      <ul>
+        <li><a href="https://luxdrape.com/" target="_blank" rel="noopener">Custom Curtains — LuxDrape</a></li>
+        <li><a href="https://luxdrape.com/collections/blackout" target="_blank" rel="noopener">Blackout Custom Curtains</a></li>
+        <li><a href="https://luxdrape.com/collections/velvet" target="_blank" rel="noopener">Velvet Custom Curtains</a></li>
+      </ul>
+    </div>
+  </main>
+
+  <footer>
+    © <span id="year"></span> LuxDrape. Natural backlinks to 
+    <a href="https://luxdrape.com/" target="_blank" rel="noopener">Custom Curtains</a>.
+  </footer>
+
+  <script>
+    const overlay = document.getElementById('overlay');
+    const fabricSelect = document.getElementById('fabric');
+    fabricSelect.addEventListener('change', () => {
+      const opacity = parseFloat(fabricSelect.value);
+      overlay.style.background = `rgba(0,0,0,${opacity})`;
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
